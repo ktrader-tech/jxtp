@@ -114,7 +114,7 @@ bintray {
         repo = NAME
         name = NAME
         desc = DESC
-        setLabels("java", "xtp", "quant", "future")
+        setLabels("java", "xtp", "quant", "stock")
         setLicenses("Apache-2.0")
         publicDownloadNumbers = true
         githubRepo = GITHUB_REPO
