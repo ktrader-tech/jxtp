@@ -1,6 +1,6 @@
-# JXTP  [![JCenter Version](https://img.shields.io/bintray/v/rationalityfrontline/jxtp/jxtp?label=JCenter)](https://bintray.com/rationalityfrontline/jxtp/jxtp) [![Apache License 2.0](https://img.shields.io/github/license/rationalityfrontline/jxtp)](https://github.com/RationalityFrontline/jxtp/blob/master/LICENSE)
+# JXTP  [![JCenter Version](https://img.shields.io/bintray/v/rationalityfrontline/jxtp/jxtp?label=JCenter)](https://bintray.com/rationalityfrontline/jxtp/jxtp) ![platform](https://img.shields.io/badge/platform-windows%7Clinux-green) [![Apache License 2.0](https://img.shields.io/github/license/rationalityfrontline/jxtp)](https://github.com/RationalityFrontline/jxtp/blob/master/LICENSE)
 
-基于 [SWIG](http://www.swig.org/) 实现的对[中泰证券](https://xtp.zts.com.cn/) XTP 的封装。当前封装版本为 1.1.19.2，同时支持 64 位的 Windows 及 Linux 操作系统，动态链接库已被包含至 jar 包内，并在类加载时自动 loadLibrary，只需添加 jar 包即可直接使用。
+基于 [SWIG](http://www.swig.org/) 实现的对[中泰证券](https://xtp.zts.com.cn/) XTP 的封装。当前封装版本为 1.1.19.2，支持 64 位的 Windows 及 Linux 操作系统，动态链接库已被包含至 jar 包内，并在类加载时自动 loadLibrary，只需添加 jar 包即可直接使用。
 
 ## Usage
 
