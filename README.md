@@ -1,6 +1,7 @@
-# JXTP  [![JCenter Version](https://img.shields.io/bintray/v/rationalityfrontline/jxtp/jxtp?label=JCenter)](https://bintray.com/rationalityfrontline/jxtp/jxtp) ![platform](https://img.shields.io/badge/platform-windows%7Clinux-green) [![Apache License 2.0](https://img.shields.io/github/license/rationalityfrontline/jxtp)](https://github.com/RationalityFrontline/jxtp/blob/master/LICENSE)
+# JXTP
+[![Maven Central](https://img.shields.io/maven-central/v/org.rationalityfrontline/jxtp.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22org.rationalityfrontline%22%20AND%20a:%22jxtp%22) ![platform](https://img.shields.io/badge/platform-windows%7Clinux-green) [![Apache License 2.0](https://img.shields.io/github/license/rationalityfrontline/jxtp)](https://github.com/RationalityFrontline/jxtp/blob/master/LICENSE)
 
-基于 [SWIG](http://www.swig.org/) 实现的对[中泰证券](https://xtp.zts.com.cn/) XTP 的封装。当前封装版本为 1.1.19.2，支持 64 位的 Windows 及 Linux 操作系统，动态链接库已被包含至 jar 包内，并在类加载时自动 loadLibrary，只需添加 jar 包即可直接使用。
+基于 [SWIG](http://www.swig.org/) 实现的对[中泰证券](https://xtp.zts.com.cn/) XTP 的封装。当前封装版本为 2.2.25.5，支持 64 位的 Windows 及 Linux 操作系统，动态链接库已被包含至 jar 包内，并在类加载时自动 loadLibrary，只需添加 jar 包即可直接使用。
 
 ## Usage
 
@@ -23,25 +24,15 @@ fun main() {
 
 ## Download
 
-**Gradle:**
+**Gradle Kotlin DSL:**
 
-首先将 JCenter 添加至仓库中：
-
-```groovy
-repositories {
-    jcenter()
-}
-```
-```groovy
-// Groovy DSL
-dependencies {
-    implementation 'org.rationalityfrontline:jxtp:1.1.19.2-1.0'
-}
-```
 ```kotlin
-// Kotlin DSL
+repositories {
+    mavenCentral()
+}
+
 dependencies {
-    implementation("org.rationalityfrontline:jxtp:1.1.19.2-1.0")
+    implementation("org.rationalityfrontline:jxtp:2.2.25.5-1.0.0")
 }
 ```
 
@@ -51,8 +42,7 @@ dependencies {
 <dependency>
 	<groupId>org.rationalityfrontline</groupId>
 	<artifactId>jxtp</artifactId>
-	<version>1.1.19.2-1.0</version>
-	<type>pom</type>
+    <version>2.2.25.5-1.0.0</version>
 </dependency>
 ```
 **Jar:**
@@ -61,9 +51,8 @@ dependencies {
 
 使用 Jar 包前请先添加 [native-lib-loader](https://github.com/scijava/native-lib-loader) 依赖：
 ```kotlin
-// Kotlin DSL
 dependencies {
-    implementation("org.scijava:native-lib-loader:2.3.4")
+    implementation("org.scijava:native-lib-loader:2.3.5")
 }
 ```
 
