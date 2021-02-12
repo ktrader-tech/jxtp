@@ -40,8 +40,8 @@ dependencies {
 
 ```xml
 <dependency>
-	<groupId>org.rationalityfrontline</groupId>
-	<artifactId>jxtp</artifactId>
+    <groupId>org.rationalityfrontline</groupId>
+    <artifactId>jxtp</artifactId>
     <version>2.2.25.5-1.0.0</version>
 </dependency>
 ```
