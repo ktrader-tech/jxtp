@@ -38,6 +38,18 @@ import org.scijava.nativelib.NativeLoader;
             System.err.println("Failed to load XTP native library: \n" + e);
         }
     }
+
+    /**
+     * 删除 C++ 中对 jxtpJNI class 的全局引用，避免 GC root 的持续存在
+     */
+    public final static native void release();
+%}
+
+%wrapper %{
+SWIGEXPORT void JNICALL Java_org_rationalityfrontline_jxtp_jxtpJNI_release(JNIEnv *jenv, jclass jcls) {
+    jenv->DeleteGlobalRef(Swig::jclass_jxtpJNI);
+    Swig::jclass_jxtpJNI = NULL;
+}
 %}
 
 %ignore XTPQueryAssetRsp::unknown;
