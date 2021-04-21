@@ -431,7 +431,7 @@ namespace XTP {
 			///@remark 需要与订阅全市场期权逐笔行情接口配套使用
 			virtual int UnSubscribeAllOptionTickByTick(XTP_EXCHANGE_TYPE exchange_id = XTP_EXCHANGE_UNKNOWN) = 0;
 
-			///获取当前交易日合约的详细静态信息
+			///获取所有合约的详细静态信息，包括指数等非可交易的
 			///@return 发送查询请求是否成功，“0”表示发送查询请求成功，非“0”表示发送查询请求不成功
 			///@param exchange_id 交易所代码，必须提供 1-上海 2-深圳
 			virtual int QueryAllTickersFullInfo(XTP_EXCHANGE_TYPE exchange_id) = 0;

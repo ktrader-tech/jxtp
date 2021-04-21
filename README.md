@@ -1,7 +1,7 @@
 # JXTP
 [![Maven Central](https://img.shields.io/maven-central/v/org.rationalityfrontline/jxtp.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22org.rationalityfrontline%22%20AND%20a:%22jxtp%22) ![platform](https://img.shields.io/badge/platform-windows%7Clinux-green) [![Apache License 2.0](https://img.shields.io/github/license/rationalityfrontline/jxtp)](https://github.com/RationalityFrontline/jxtp/blob/master/LICENSE)
 
-基于 [SWIG](http://www.swig.org/) 实现的对[中泰证券](https://xtp.zts.com.cn/) XTP 的封装。当前封装版本为 2.2.25.5，支持 64 位的 Windows 及 Linux 操作系统，动态链接库已被包含至 jar 包内，并在类加载时自动 loadLibrary，只需添加 jar 包即可直接使用。
+基于 [SWIG](http://www.swig.org/) 实现的对[中泰证券](https://xtp.zts.com.cn/) XTP 的封装。当前封装版本为 2.2.27.4，支持 64 位的 Windows 及 Linux 操作系统，动态链接库已被包含至 jar 包内，并在类加载时自动 loadLibrary，只需添加 jar 包即可直接使用。
 
 ## Usage
 
@@ -12,10 +12,12 @@ import org.rationalityfrontline.jxtp.*
 
 fun main() {
     if (jxtpJNI.libraryLoaded()) {
-        // Do something with XTP, here we print its sdk version
-        TraderApi.CreateTraderApi(1, "./log", XTP_LOG_LEVEL.XTP_LOG_LEVEL_INFO).apply {
-        	println(GetApiVersion())
-        }
+        // do something with XTP, here we print its sdk version
+        val traderApi = TraderApi.CreateTraderApi(1, "./log", XTP_LOG_LEVEL.XTP_LOG_LEVEL_INFO)
+        println(traderApi.GetApiVersion())
+        traderApi.Release()
+        // release native gc root in jni, jxtp will be unavailable after doing this
+        jxtpJNI.release()
     } else {
         System.err.println("Library load failed!")
     }
@@ -32,7 +34,7 @@ repositories {
 }
 
 dependencies {
-    implementation("org.rationalityfrontline:jxtp:2.2.25.5-1.0.0")
+    implementation("org.rationalityfrontline:jxtp:2.2.27.4-1.0.0")
 }
 ```
 
@@ -42,7 +44,7 @@ dependencies {
 <dependency>
     <groupId>org.rationalityfrontline</groupId>
     <artifactId>jxtp</artifactId>
-    <version>2.2.25.5-1.0.0</version>
+    <version>2.2.27.4-1.0.0</version>
 </dependency>
 ```
 **Jar:**

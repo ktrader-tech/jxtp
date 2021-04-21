@@ -391,6 +391,15 @@ namespace XTP {
 			///@remark 一个查询请求可能对应多个响应，需要快速返回，否则会堵塞后续消息，当堵塞严重时，会触发断线。
 			virtual void OnQueryOptionCombinedStrategyInfo(XTPQueryCombineStrategyInfoRsp *strategy_info, XTPRI *error_info, int request_id, bool is_last, uint64_t session_id) {};
 
+			///查询期权行权合并头寸的响应
+			///@param position_info 查询到的一个行权合并头寸信息
+			///@param error_info 查询持仓发生错误时返回的错误信息，当error_info为空，或者error_info.error_id为0时，表明没有错误
+			///@param request_id 此消息响应函数对应的请求ID
+			///@param is_last 此消息响应函数是否为request_id这条请求所对应的最后一个响应，当为最后一个的时候为true，如果为false，表示还有其他后续消息响应
+			///@param session_id 资金账户对应的session_id，登录时得到
+			///@remark 一个查询请求可能对应多个响应，需要快速返回，否则会堵塞后续消息，当堵塞严重时，会触发断线。
+			virtual void OnQueryOptionCombinedExecPosition(XTPQueryOptCombExecPosRsp *position_info, XTPRI *error_info, int request_id, bool is_last, uint64_t session_id) {};
+
 		};
 	}
 }
@@ -416,11 +425,11 @@ namespace XTP {
 		{
 		public:
 			///创建TraderApi
-			///@param client_id （必须输入）客户端id，用于区分同一用户的不同客户端，由用户自定义
+			///@param client_id （必须输入）客户端id，用于区分同一用户的不同客户端，由用户自定义，普通用户必须使用1-99之间的数值，否则可能无法登录
 			///@param save_file_path （必须输入）存贮订阅信息文件的目录，请设定一个真实存在的有可写权限的路径
 			///@param log_level 日志输出级别
 			///@return 创建出的UserApi
-			///@remark 如果一个账户需要在多个客户端登录，请使用不同的client_id，系统允许一个账户同时登录多个客户端，但是对于同一账户，相同的client_id只能保持一个session连接，后面的登录在前一个session存续期间，无法连接。系统不支持过夜，请确保每天开盘前重新启动
+			///@remark 只能创建一次，如果一个账户需要在多个客户端登录，请使用不同的client_id，系统允许一个账户同时登录多个客户端，但是对于同一账户，相同的client_id只能保持一个session连接，后面的登录在前一个session存续期间，无法连接。系统不支持过夜，请确保每天开盘前重新启动
 			static TraderApi *CreateTraderApi(uint8_t client_id, const char *save_file_path, XTP_LOG_LEVEL log_level = XTP_LOG_LEVEL_DEBUG);
 
 			///删除接口对象本身
@@ -831,6 +840,14 @@ namespace XTP {
 			///@param request_id 用于用户定位查询响应的ID，由用户自定义
 			///@remark 该方法仅支持精确查询，不支持模糊查询
 			virtual int QueryOptionCombinedStrategyInfo(uint64_t session_id, int request_id) = 0;
+
+			///请求查询期权行权合并头寸
+			///@return 查询是否成功，“0”表示成功，非“0”表示出错，此时用户可以调用GetApiLastError()来获取错误代码
+			///@param query_param 需要查询的行权合并的筛选条件，其中market为0会默认查询全市场，成分合约代码可以初始化为空，如果不为空，请不带空格，并以'\0'结尾，注意所有填写的条件都会进行匹配
+			///@param session_id 资金账户对应的session_id,登录时得到
+			///@param request_id 用于用户定位查询响应的ID，由用户自定义
+			///@remark 该方法可能对应多条响应消息
+			virtual int QueryOptionCombinedExecPosition(const XTPQueryOptCombExecPosReq* query_param, uint64_t session_id, int request_id) = 0;
 
 		protected:
 			~TraderApi() {};

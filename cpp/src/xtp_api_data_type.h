@@ -39,6 +39,8 @@ typedef char XTPVersionType[XTP_VERSION_LEN];
 #define XTP_MAC_ADDRESS_LEN 16
 /// 硬盘序列号的字符串长度
 #define XTP_HARDDISK_SN_LEN 24
+/// MacOS系统序列号的字符串长度
+#define XTP_MACOS_SNO_LEN 21
 
 /// 期权组合策略最多腿数
 #define XTP_STRATEGE_LEG_NUM        4
@@ -51,6 +53,9 @@ typedef char XTPVersionType[XTP_VERSION_LEN];
 
 /// 期权合约可支持的组合策略列表字符串长度
 #define XTP_CNTRT_COMB_STRA_LIST_LEN         2048
+
+/// 期权行权合并最多成分合约数量
+#define XTP_COMBINED_EXECUTION_LEG_NUM       2
 
 /////////////////////////////////////////////////////////////////////////
 ///@brief XTP_LOG_LEVEL是日志输出级别类型
@@ -107,8 +112,8 @@ typedef enum XTP_PRICE_TYPE
 	XTP_PRICE_BEST5_OR_LIMIT,      ///<最优五档即时成交剩余转限价，市价单-沪
 	XTP_PRICE_BEST5_OR_CANCEL,     ///<最优5档即时成交剩余转撤销，市价单-沪深 / 深期权
 	XTP_PRICE_ALL_OR_CANCEL,       ///<全部成交或撤销,市价单-深 / 沪期权 / 深期权
-	XTP_PRICE_FORWARD_BEST,        ///<本方最优，市价单-深 / 深期权
-	XTP_PRICE_REVERSE_BEST_LIMIT,  ///<对方最优剩余转限价，市价单-深 / 沪期权 / 深期权
+	XTP_PRICE_FORWARD_BEST,        ///<本方最优，市价单-深 / 深期权 / 沪科创板
+	XTP_PRICE_REVERSE_BEST_LIMIT,  ///<对方最优剩余转限价，市价单-深 / 沪期权 / 深期权 / 沪科创板
 	XTP_PRICE_LIMIT_OR_CANCEL,	   ///<期权限价申报FOK
 	XTP_PRICE_TYPE_UNKNOWN,		   ///<未知或者无效价格类型
 }XTP_PRICE_TYPE;
@@ -304,6 +309,7 @@ typedef enum XTP_BUSINESS_TYPE
     XTP_BUSINESS_TYPE_EXECUTE,             ///<行权
     XTP_BUSINESS_TYPE_FREEZE,              ///<锁定解锁，暂不支持
     XTP_BUSINESS_TYPE_OPTION_COMBINE,      ///<期权组合策略 组合和拆分业务
+    XTP_BUSINESS_TYPE_EXECUTE_COMBINE,     ///<期权行权合并业务
     XTP_BUSINESS_TYPE_UNKNOWN,             ///<未知类型
 } XTP_BUSINESS_TYPE;
 
