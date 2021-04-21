@@ -1,4 +1,6 @@
 rm -rf build
 cmake CMakeLists.txt -B build
 cmake --build build --config Release
-cp build/lib/libjxtp.so ../lib
+lib_ext=".so"
+lib_ext=$([[ $(uname) = "Darwin" ]] && echo ".dylib")
+cp "build/lib/libjxtp${lib_ext}" ../lib
