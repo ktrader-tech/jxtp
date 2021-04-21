@@ -52,6 +52,10 @@ tasks {
             include("*.so")
             into("natives/linux_64")
         }
+        from("../lib") {
+            include("*.dylib")
+            into("natives/osx_64")
+        }
     }
     withType(Javadoc::class.java) {
         options.apply {
