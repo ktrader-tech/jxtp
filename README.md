@@ -1,5 +1,7 @@
 # JXTP
-[![Maven Central](https://img.shields.io/maven-central/v/org.rationalityfrontline/jxtp.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22org.rationalityfrontline%22%20AND%20a:%22jxtp%22) ![platform](https://img.shields.io/badge/platform-windows%7Clinux%7Cmac-green) [![Apache License 2.0](https://img.shields.io/github/license/rationalityfrontline/jxtp)](https://github.com/RationalityFrontline/jxtp/blob/master/LICENSE)
+[![Maven Central](https://img.shields.io/maven-central/v/org.rationalityfrontline/jxtp.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22org.rationalityfrontline%22%20AND%20a:%22jxtp%22)
+![platform](https://img.shields.io/badge/platform-windows%7Clinux%7Cmac-green)
+[![Apache License 2.0](https://img.shields.io/github/license/ktrader-tech/jxtp)](https://github.com/ktrader-tech/jxtp/blob/master/LICENSE)
 
 基于 [SWIG](http://www.swig.org/) 实现的对[中泰证券](https://xtp.zts.com.cn/) XTP 的封装。当前封装版本为 2.2.27.4，支持 64 位的 Windows | Linux | Mac 操作系统，动态链接库已被包含至 jar 包内，并在类加载时自动 loadLibrary，只需添加 jar 包即可直接使用。
 
@@ -49,7 +51,7 @@ dependencies {
 ```
 **Jar:**
 
-[Releases](https://github.com/RationalityFrontline/jxtp/releases)
+[Releases](https://github.com/ktrader-tech/jxtp/releases)
 
 使用 Jar 包前请先添加 [native-lib-loader](https://github.com/scijava/native-lib-loader) 依赖：
 ```kotlin
@@ -92,7 +94,7 @@ https://github.com/scijava/native-lib-loader
 
 ## License
 
-JXTP is released under the [Apache 2.0 license](https://github.com/RationalityFrontline/jxtp/blob/master/LICENSE).
+JXTP is released under the [Apache 2.0 license](https://github.com/ktrader-tech/jxtp/blob/master/LICENSE).
 
 ```
 Copyright 2020-2021 RationalityFrontline

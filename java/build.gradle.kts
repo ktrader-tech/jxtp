@@ -10,7 +10,7 @@ group = "org.rationalityfrontline"
 version = "2.2.27.4-1.1.0"
 val NAME = project.name
 val DESC = "Java wrapper for XTP"
-val GITHUB_REPO = "RationalityFrontline/jxtp"
+val GITHUB_REPO = "ktrader-tech/jxtp"
 
 repositories {
     mavenCentral()
@@ -44,6 +44,11 @@ tasks {
         }
     }
     jar {
+        manifest.attributes(mapOf(
+            "Implementation-Title" to NAME,
+            "Implementation-Version" to project.version,
+            "Implementation-Vendor" to "RationalityFrontline"
+        ))
         from("../lib") {
             include("*.dll")
             into("natives/windows_64")
@@ -83,8 +88,8 @@ publishing {
                     developer {
                         name.set("RationalityFrontline")
                         email.set("rationalityfrontline@gmail.com")
-                        organization.set("RationalityFrontline")
-                        organizationUrl.set("https://github.com/RationalityFrontline")
+                        organization.set("ktrader-tech")
+                        organizationUrl.set("https://github.com/ktrader-tech")
                     }
                 }
                 scm {
